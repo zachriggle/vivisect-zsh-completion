@@ -1,0 +1,57 @@
+#compdef vdbbin
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+# Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+#
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for vdbbin
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Zach Riggle (https://github.com/zachriggle)
+#
+# ------------------------------------------------------------------------------
+local state
+
+_arguments -s -S \
+    '(- :)'{--help,-h}'[show this help message and exit]' \
+    '(--cmd -c)'{--cmd,-c}'[debug a fired command]:command:->commands' \
+    '(--process -p)'{--process,-p}'[attach to a process by name or pid]:pid:->processes' \
+    '(--qt -Q)'{--qt,-Q}'[run the QT gui]' \
+    '(--remote -R)'{--remote,-R}'[attach to remote VDB server]:host:_hosts' \
+    '(--server -S)'{--server,-S}'[run as VDB server]' \
+    '(--verbose -v)'{--verbose,-v}'[be verbose]' \
+    '(--snapshot -s)'{--snapshot,-s}'[load a vtrace snapshot file]:snapshot file:_files' \
+    '(--target -t)'{--target,-t}'[activate special vdb target]' \
+    '(--android -a)'{--android,-a}'[debug android with adb]' \
+    '(--eventid -e)'{--eventid,-e}'[used for windows JIT]:event id:' \
+    && ret=0
+
+case "$state" in
+processes)
+    _alternative \
+        'jobs:: _jobs -t' \
+        'processes:: _pids' \
+        && ret=0
+    ;;
+commands)
+    _alternative \
+        'commands:: _command_names'
+    ;;
+esac
+
+return 0

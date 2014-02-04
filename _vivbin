@@ -1,0 +1,41 @@
+#compdef vivbin
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+#
+# Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+#
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+#
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for vivbin
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Zach Riggle (https://github.com/zachriggle)
+#
+# ------------------------------------------------------------------------------
+
+_arguments -s -S \
+    '(- :)'{--help,-h}'[show this help message and exit]' \
+    '(-M)-M[run the file listed as an analysis module in non-gui mode and exit]' \
+    '(-A)-A[do NOT do an auto-analysis pass]' \
+    '(-B)-B[bulk mode. do NOT start the gui, just load/analyze/save]' \
+    '(-C)-C[output vivisect profiling (cProfile) info]' \
+    '(-O)-O[secname.optname=optval (optval must be JSON)]' \
+    '(-p)-p[manually select the parser module]:parser:(pe elf blob ihex macho)' \
+    '(-s)-s[specify storage module by name]' \
+    '(-v)-v[verbose mode]' \
+    '(-V)-V[add file version to save file name]'
+
+return 0
